@@ -31,14 +31,11 @@ class AgentState(TypedDict):
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 llm = ChatGroq(
-    model="gemma2-9b-it",
+    model="llama-3.1-8b-instant",
     api_key=GROQ_API_KEY,
     temperature=0.3,
     max_tokens=4096,
 )
-
-# Override model_name at runtime because Groq has decommissioned gemma2-9b-it
-llm.model_name = "llama-3.1-8b-instant"
 
 # Bind all five CRM tools to the model
 llm_with_tools = llm.bind_tools(all_tools)
